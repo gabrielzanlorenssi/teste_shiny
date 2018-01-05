@@ -12,10 +12,10 @@ colnames(tabela) <- c("mun", "total", "agropecuaria", "industria", "servicos", "
 tabela2 <- tabela %>% 
   separate(mun, c("mun", "uf"), sep="[(]") %>% 
   mutate(uf = str_replace_all(uf, "[)]", ""),
-         s_agropecuaria = agropecuaria / total,
-         s_industria = industria / total,
-         s_servicos = servicos / total,
-         s_adm = adm / total) %>% 
+         s_agropecuaria = round(agropecuaria / total, digits = 2),
+         s_industria = round(industria / total, digits = 2),
+         s_servicos = round(servicos / total, digits = 2),
+         s_adm = round(adm / total, digits=2)) %>% 
   filter(!is.na(uf))
 
 
